@@ -27,7 +27,7 @@ var cardsInPlay = [];
 
 function checkForMatch () {
 	if (cardsInPlay[0] === cardsInPlay[1]) {
-		alert("Match found");
+		setTimeout("alert('Match found');", 300);
 	}
 	else {
 		alert("No match found");
@@ -42,8 +42,7 @@ function flipCard () {
 	console.log(cards[cardId].cardImage);
 	console.log(cards[cardId].suit);
 	if (cardsInPlay.length === 2) {
-		//this doesn't work. why?
-		setTimeout(checkForMatch(), 1000000);
+		checkForMatch();
 	}
 }
 
