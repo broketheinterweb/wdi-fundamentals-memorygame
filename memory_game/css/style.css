@@ -62,13 +62,30 @@ main {
 	font-weight: 700;
 }
 
+.score {
+	font-family: "Raleway", sans-serif;
+	margin-right: auto;
+	margin-left: auto;
+	color: #ff9900;
+}
+
+#score::after {
+	font-family: "Raleway", sans-serif;
+	margin-right: auto;
+	margin-left: auto;
+	color: #ff9900;
+	font-size: 26px;
+	content: attr(data-content);
+}
+
+	
 .clearfix:after {
-visibility: hidden;
-display: block;
-content: " ";
-clear: both;
-height: 0;
-font-size: 0;
+	visibility: hidden;
+	display: block;
+	content: " ";
+	clear: both;
+	height: 0;
+	font-size: 0;
 }
 
 img {

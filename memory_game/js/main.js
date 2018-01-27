@@ -24,13 +24,26 @@ var cards = [
 ];
 
 var cardsInPlay = [];
+var score = 0;
+var scoreElement;
 
 function checkForMatch () {
 	if (cardsInPlay[0] === cardsInPlay[1]) {
-		setTimeout("alert('Match found');", 300);
+		score += 1;
+		scoreElement.setAttribute('data-content', score.toString());
+		setTimeout(function() {
+			if (confirm('Match found! Click Okay to play again.')) {
+				location.reload();
+			}
+			}, 300);
 	}
 	else {
-		alert("No match found");
+		setTimeout(function() {
+			scoreElement.setAttribute('data-content', score.toString());
+			if (confirm('No match found. Click Okay to play again.')) {
+			location.reload();
+			}
+		}, 300);
 	}
 }
 
@@ -46,7 +59,30 @@ function flipCard () {
 	}
 }
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
 function createBoard () {
+	shuffle(cards);
+	scoreElement = document.getElementById('score');
+	scoreElement.setAttribute('data-content', score.toString());
 	for (var i = 0; i < cards.length; i++) {
 		var cardElement = document.createElement('img');
 		cardElement.setAttribute('src', "images/back.png")
@@ -55,5 +91,7 @@ function createBoard () {
 		document.getElementById('game-board').appendChild(cardElement);
 	}
 }
+
+
 
 createBoard();
