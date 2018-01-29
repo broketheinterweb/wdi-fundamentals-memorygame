@@ -33,7 +33,7 @@ function checkForMatch () {
 		scoreElement.setAttribute('data-content', score.toString());
 		setTimeout(function() {
 			if (confirm('Match found! Click Okay to play again.')) {
-				location.reload();
+				restartGame();
 			}
 			}, 300);
 	}
@@ -41,7 +41,7 @@ function checkForMatch () {
 		setTimeout(function() {
 			scoreElement.setAttribute('data-content', score.toString());
 			if (confirm('No match found. Click Okay to play again.')) {
-			location.reload();
+				restartGame();
 			}
 		}, 300);
 	}
@@ -90,6 +90,13 @@ function createBoard () {
 		cardElement.addEventListener("click", flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
 	}
+}
+
+function restartGame () {
+    var board = document.getElementById('game-board');
+    board.innerHTML = '';
+    cardsInPlay = [];
+    createBoard();
 }
 
 
